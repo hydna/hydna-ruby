@@ -1,4 +1,4 @@
-require 'lib/hydna'
+require 'hydna'
 
 begin
   # sending messages
