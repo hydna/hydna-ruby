@@ -84,7 +84,7 @@ module Hydna
       raise "Priority needs to be a number 1-4"
     end
 
-    if prio < 0 or prio > 4
+    if prio < 1 or prio > 4
       raise "Priority needs to be 1-4"
     end  
 
