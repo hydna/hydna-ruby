@@ -7,9 +7,8 @@ features.
 More info: https://www.hydna.com/
 
 ## Installation
-
-
-
+	
+	gem install hydna
 
 ## Usage
 
