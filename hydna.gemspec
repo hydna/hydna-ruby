@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'hydna'
-  s.version     = '0.1.0'
+  s.version     = '0.1.1'
   s.date        = '2012-04-11'
   s.summary     = "Bindings for hydna push API."
   s.description = "Hydna exposes a straightforward API over HTTP. It uses a single resource; sending messages is done by making POST requests to the same URI you'd use to connect to Hydna in any client library."
