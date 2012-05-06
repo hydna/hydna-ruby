@@ -97,7 +97,7 @@ module Hydna
       raise "Payload expected" 
     end
 
-    if data.bytesize > MAX_PAYLOAD_SIZE:
+    if data.bytesize > MAX_PAYLOAD_SIZE
       raise "Payload exceeds maximum length allowed"
     end
 
