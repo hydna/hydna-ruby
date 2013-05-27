@@ -1,12 +1,7 @@
-require 'lib/hydna'
+require 'hydna'
 
-begin
-  # sending messages
-  Hydna.push("http://public.hydna.net/4001", "Hello World")
+# sending messages
+Hydna.push("http://public.hydna.net/1", "Hello World")
   
-  # sending signals
-  Hydna.emit("http://public.hydna.net/4001", "Hello World")
-  
-rescue Exception => e
-  puts e.message
-end
+# sending signals
+Hydna.emit("http://public.hydna.net/1", "Hello World")

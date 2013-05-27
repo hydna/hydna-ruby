@@ -57,6 +57,7 @@ module Hydna
     data = clean_payload(data)
 
     http = Net::HTTP::new(uri['host'], uri['port'])
+    http.use_ssl = false
     
     if uri['scheme'] == 'https'
       http.use_ssl = true
@@ -68,24 +69,25 @@ module Hydna
     if uri['token'] != nil
       path = "%s?%s" % [path, uri['token']]
     end
-
-    resp, body = http.post(path, data, headers)
     
-    if Integer(resp.code) != 200
-      raise resp.message
+    begin
+      resp, body = http.post(path, data, headers)
+      if Integer(resp.code) != 200
+        raise resp.message
+      end
+    rescue EOFError => e
     end
-
     return true
 
   end
   
   def self.clean_prio(prio)
     if !is_numeric(prio)
-      raise "Priority needs to be a number 1-4"
+      raise "Priority needs to be a number 0-3"
     end
 
-    if prio < 1 or prio > 4
-      raise "Priority needs to be 1-4"
+    if prio < 0 or prio > 3
+      raise "Priority needs to be 0-3"
     end  
 
     return prio
@@ -124,10 +126,10 @@ module Hydna
 
   def self.path_to_channel(query)
     if query.length < 2
-      return DEFAULT_CHANNEL;  
+      return DEFAULT_CHANNEL
     end
 
-    parts = query.split("/");
+    parts = query.split("/")
 
     if parts.length > 3
       raise "Unable to parse channel"
