@@ -27,7 +27,7 @@ module Hydna
 
   end
 
-  def self.push(domain, data, prio=1, ctoken=nil, agent='hydna-ruby-push')
+  def self.push(domain, data, prio=0, ctoken=nil, agent='hydna-ruby-push')
 
     headers = {
       'Content-Type' => 'text/plain',
