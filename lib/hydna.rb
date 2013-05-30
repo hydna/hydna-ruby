@@ -134,6 +134,13 @@ module Hydna
     if parts.length > 3
       raise "Unable to parse channel"
     end
+    
+    pos = parts[1].index('x')
+    
+    if pos != nil
+      channel = parts[1].slice(pos+1, parts[1].length).hex
+      return channel
+    end
 
     if !is_numeric(parts[1])
       raise "Invalid channel"
