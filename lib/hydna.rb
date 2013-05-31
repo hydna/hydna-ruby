@@ -6,7 +6,7 @@ module Hydna
   
   DEFAULT_CHANNEL   = 1
   MAX_PAYLOAD_SIZE  = 0xFFF8
-  MAX_CHANNEL_VALUE = 0xFFFFFFF
+  MAX_CHANNEL_VALUE = 0xFFFFFFFF
   MAX_TOKEN_SIZE    = 0xFFF8
   
   def self.emit(domain, data, ctoken=nil, agent='hydna-ruby-push')
