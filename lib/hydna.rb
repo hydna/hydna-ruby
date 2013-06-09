@@ -16,13 +16,7 @@ module Hydna
       'User-Agent' => agent,
       'X-Emit' => 'yes'
     }
-
-    token = clean_token(ctoken) 
-
-    if token != nil
-      headers['X-Token'] = token
-    end
-
+    
     send(domain, headers, data)
 
   end
@@ -33,13 +27,7 @@ module Hydna
       'Content-Type' => 'text/plain',
       'User-Agent' => agent
     }
-
-    token = clean_token(ctoken) 
-
-    if token != nil
-      headers['X-Token'] = token
-    end
-
+    
     prio = clean_prio(prio)
 
     headers['X-Priority'] = prio.to_s()
@@ -146,7 +134,7 @@ module Hydna
       raise "Invalid channel"
     end
 
-    channel = Integer(parts[1]);
+    channel = Integer(parts[1])
 
     if channel > MAX_CHANNEL_VALUE or channel <= 0
       raise "Invalid channel"
