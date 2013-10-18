@@ -18,10 +18,10 @@ The `hydna`-module exposes two functions:
 
 	begin
 	  # sending messages
-	  Hydna.push("https://public.hydna.net/4000", "Hello World")
+	  Hydna.push("http://public.hydna.net/hello", "Hello World")
 
 	  # sending signals
-	  Hydna.emit("https://public.hydna.net/4000", "Hello World") 
+	  Hydna.emit("http://public.hydna.net/hello", "Hello World") 
 
 	rescue Exception => e
 	  puts e.message

@@ -4,9 +4,8 @@ require 'net/https'
 
 module Hydna
   
-  DEFAULT_CHANNEL   = 1
+  DEFAULT_CHANNEL   = "/"
   MAX_PAYLOAD_SIZE  = 0xFFF8
-  MAX_CHANNEL_VALUE = 0xFFFFFFFF
   MAX_TOKEN_SIZE    = 0xFFFF
   
   def self.emit(domain, data, ctoken=nil, agent='hydna-ruby-push')
@@ -52,10 +51,10 @@ module Hydna
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     end
 
-    path = "/%d/" % uri['channel']
+    path = uri['channel']
 
     if uri['token'] != nil
-      path = "%s?%s" % [path, uri['token']]
+      path = "%s?%s" % [uri['channel'], uri['token']]
     end
     
     begin
@@ -116,29 +115,8 @@ module Hydna
     if query.length < 2
       return DEFAULT_CHANNEL
     end
-
-    parts = query.split("/")
-
-    if parts.length > 3
-      raise "Unable to parse channel"
-    end
     
-    pos = parts[1].index('x')
-    
-    if pos != nil
-      channel = parts[1].slice(pos+1, parts[1].length).hex
-      return channel
-    end
-
-    if !is_numeric(parts[1])
-      raise "Invalid channel"
-    end
-
-    channel = Integer(parts[1])
-
-    if channel > MAX_CHANNEL_VALUE or channel <= 0
-      raise "Invalid channel"
-    end
+    channel = query
 
     return channel;
   end
@@ -152,6 +130,7 @@ module Hydna
     uri = URI.parse(domain)
 
     channel = path_to_channel(uri.path)
+    
     token = clean_token(uri.query)
 
     return {
