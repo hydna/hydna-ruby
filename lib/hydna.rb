@@ -5,8 +5,8 @@ require 'net/https'
 module Hydna
   
   DEFAULT_CHANNEL   = "/"
-  MAX_PAYLOAD_SIZE  = 0xFFF8
-  MAX_TOKEN_SIZE    = 0xFFFF
+  MAX_PAYLOAD_SIZE  = 0xFFFA
+  MAX_TOKEN_SIZE    = MAX_PAYLOAD_SIZE
   
   def self.emit(domain, data, ctoken=nil, agent='hydna-ruby-push')
 
